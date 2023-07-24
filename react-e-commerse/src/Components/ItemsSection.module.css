@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 5rem 0rem;
+}
+
+.imgDiv{
+    overflow: hidden;
+}
+.img{
+    transform-origin: center center;
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+        transition: ease-in 0.5s;
+        filter: brightness(100%);
+}
+
+.img:hover{
+        transform: scale(1.5);
+        filter: brightness(130%);
+}
