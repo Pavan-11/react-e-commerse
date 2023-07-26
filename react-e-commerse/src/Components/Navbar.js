@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './Navbar.module.css';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import CartContext from './CartContext';
 
-const NavigationBar = () => {
+import {Nav, Navbar, Button} from 'react-bootstrap';
+
+const NavigationBar = (props) => {
+    const {totalItems} = useContext(CartContext);
+
     return (
         <>
             <Navbar bg='black' expand='sm' variant='dark' fixed='top' className={classes.border} >
@@ -10,7 +14,9 @@ const NavigationBar = () => {
                     <Nav.Link href='#home'>Home</Nav.Link>
                     <Nav.Link href='#store'>Store</Nav.Link>
                     <Nav.Link href='#about'>About</Nav.Link>
+                    <Button className='ms-5' onClick={props.onShow}>Your Cart <span>{totalItems()}</span></Button>
                 </Nav>
+                
             </Navbar>
         </>
     )

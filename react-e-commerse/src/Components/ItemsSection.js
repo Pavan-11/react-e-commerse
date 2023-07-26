@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './ItemsSection.module.css';
 import { Card, Container, Button } from 'react-bootstrap';
+import CartContext from './CartContext';
 
-const Items = (props) => {
 
+
+
+const Items = () => {
+
+    const {addToCart} = useContext(CartContext);
     const productsArr = [
 
         {
+            id: Date.now(),
 
             title: 'Colors',
 
@@ -18,6 +24,8 @@ const Items = (props) => {
 
         {
 
+            id: Date.now(),
+
             title: 'Black and white Colors',
 
             price: 50,
@@ -27,6 +35,7 @@ const Items = (props) => {
         },
 
         {
+            id: Date.now(),
 
             title: 'Yellow and Black Colors',
 
@@ -37,6 +46,7 @@ const Items = (props) => {
         },
 
         {
+            id: Date.now(),
 
             title: 'Blue Color',
 
@@ -46,52 +56,39 @@ const Items = (props) => {
 
         }
 
-    ]
+    ];
+
+    const handleToCart = (item) => {
+        addToCart(item);
+    }
+
+
 
 
     return (
-        <Container style={{ width: '60%' }} className={classes.container}>
+        <>
+            <Container style={{ width: '60%' }} className={classes.container}>
 
-            <Card className='mb-5 border-0' style={{ width: '20rem' }}>
-                <Card.Title><h4 className='text-center'>{productsArr[0].title}</h4></Card.Title>
-                <div className={classes.imgDiv}>
-                    <Card.Img className={classes.img} variant="top" src={productsArr[0].imageUrl} />
-                </div>
-                <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${productsArr[0].price}
-                    <Button >Add to Cart</Button>
-                </Card.Footer>
-            </Card>
-            <Card className='mb-5 border-0' style={{ width: '20rem' }}>
-                <Card.Title><h4 className='text-center'>{productsArr[1].title}</h4></Card.Title>
-                <div className={classes.imgDiv}>
-                    <Card.Img className={classes.img} variant="top" src={productsArr[1].imageUrl} />
-                </div>
-                <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${productsArr[1].price}
-                    <Button >Add to Cart</Button>
-                </Card.Footer>
-            </Card>
+                <Card className='mb-5 border-0' style={{ width: '20rem' }}>
+                    {productsArr.map((item) => (
+                        <>
+                            <Card.Title><h4 className='text-center'>{item.title}</h4></Card.Title>
+                            <div className={classes.imgDiv}>
+                                <Card.Img className={classes.img} variant="top" src={item.imageUrl} />
+                            </div>
+                            <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${item.price}
+                                <Button onClick={() => handleToCart(item)} >Add to Cart</Button>
+                            </Card.Footer>
+                        </>
+                    ))}
+                </Card>
+               
+            </Container>
 
-            <Card className='mb-5 border-0' style={{ width: '20rem' }}>
-                <Card.Title><h4 className='text-center'>{productsArr[2].title}</h4></Card.Title>
-                <div className={classes.imgDiv}>
-                    <Card.Img className={classes.img} variant="top" src={productsArr[2].imageUrl} />
-                </div>
-                <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${productsArr[2].price}
-                    <Button >Add to Cart</Button>
-                </Card.Footer>
-            </Card>
 
-            <Card className='mb-5 border-0' style={{ width: '20rem' }}>
-                <Card.Title><h4 className='text-center'>{productsArr[3].title}</h4></Card.Title>
-                <div className={classes.imgDiv}>
-                    <Card.Img className={classes.img} variant="top" src={productsArr[3].imageUrl} />
-                </div>
-                <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${productsArr[3].price}
-                    <Button >Add to Cart</Button>
-                </Card.Footer>
-            </Card>
+        </>
 
-        </Container>
+
     )
 }
 export default Items;
