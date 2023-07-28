@@ -12,7 +12,9 @@ const Items = () => {
     const productsArr = [
 
         {
-            id: Date.now(),
+            id: 'c1',
+
+            quantity : '',
 
             title: 'Colors',
 
@@ -24,7 +26,9 @@ const Items = () => {
 
         {
 
-            id: Date.now(),
+            id: 'c2',
+
+            quantity : '',
 
             title: 'Black and white Colors',
 
@@ -35,7 +39,9 @@ const Items = () => {
         },
 
         {
-            id: Date.now(),
+            id: 'c3',
+
+            quantity : '',
 
             title: 'Yellow and Black Colors',
 
@@ -46,7 +52,9 @@ const Items = () => {
         },
 
         {
-            id: Date.now(),
+            id: 'c4',
+
+            quantity: '',
 
             title: 'Blue Color',
 
@@ -67,11 +75,11 @@ const Items = () => {
 
     return (
         <>
-            <Container style={{ width: '60%' }} className={classes.container}>
+            <Container style={{margin: '0px 90px', padding:'0px 170px'}}  >
 
-                <Card className='mb-5 border-0' style={{ width: '20rem' }}>
+                <Card className='mb-5 border-0 ' style={{display:'flex', flexDirection:'row',flexWrap:'wrap', justifyContent:'center'}} >
                     {productsArr.map((item) => (
-                        <>
+                        <div className={classes.card} key={item.id}>
                             <Card.Title><h4 className='text-center'>{item.title}</h4></Card.Title>
                             <div className={classes.imgDiv}>
                                 <Card.Img className={classes.img} variant="top" src={item.imageUrl} />
@@ -79,7 +87,7 @@ const Items = () => {
                             <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${item.price}
                                 <Button onClick={() => handleToCart(item)} >Add to Cart</Button>
                             </Card.Footer>
-                        </>
+                        </div>
                     ))}
                 </Card>
                

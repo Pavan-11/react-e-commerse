@@ -1,0 +1,12 @@
+.footer {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+    text-align: center;
+}
+.h1{
+    color: rgb(182, 178, 169);
+    font-size: 3rem;
+}
