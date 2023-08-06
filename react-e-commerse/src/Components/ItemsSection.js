@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import classes from './ItemsSection.module.css';
 import { Card, Container, Button } from 'react-bootstrap';
 import CartContext from './CartContext';
+import {NavLink} from 'react-router-dom';
 
 
 
@@ -82,7 +83,7 @@ const Items = () => {
                         <div className={classes.card} key={item.id}>
                             <Card.Title><h4 className='text-center'>{item.title}</h4></Card.Title>
                             <div className={classes.imgDiv}>
-                                <Card.Img className={classes.img} variant="top" src={item.imageUrl} />
+                                <NavLink to={`/products/${item}`} state={item}><Card.Img className={classes.img} variant="top" src={item.imageUrl} /></NavLink>
                             </div>
                             <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${item.price}
                                 <Button onClick={() => handleToCart(item)} >Add to Cart</Button>

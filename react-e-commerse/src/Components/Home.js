@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button, Container } from 'react-bootstrap';
 import image from './play.png';
+import {useLocation} from 'react-router-dom';
 
 const Home = () => {
+
+    const location = useLocation();
+    console.log(location);
     return (
         <>
             <div style={{ width: '100vw', backgroundColor: 'darkgray', display: 'flex', flexDirection: 'column', height: '20rem', justifyContent: 'center', alignItems: 'center', position: 'relative', bottom: '8px' }}>

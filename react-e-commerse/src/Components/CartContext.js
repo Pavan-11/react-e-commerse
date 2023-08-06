@@ -6,6 +6,7 @@ export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
 
     const addToCart = (item) => {
+        /* if(cartItems.id === item) */
         setCartItems([...cartItems, item]);
     };
 
