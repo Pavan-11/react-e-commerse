@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Navigate,useNavigate} from 'react-router-dom';
 import classes from './AuthForm.module.css';
-import AuthContext from './AuthContext';
+import AuthContext from '../Context/AuthContext';
 
 const AuthForm = () => {
 
@@ -30,11 +30,10 @@ const AuthForm = () => {
 
         let url;
         if(isLogin){
-            console.log(authCtx.isLoggedIn);
             url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAd7M95EmfhA7PBsc8RiRtUsrLx9Simq70';
+            
         }else{
             url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAd7M95EmfhA7PBsc8RiRtUsrLx9Simq70'
-            console.log(authCtx.isLoggedIn);
         }
         fetch(url,
         {
@@ -59,15 +58,19 @@ const AuthForm = () => {
             }
         }).then(data => {
             authCtx.login(data.idToken);
+            console.log(data)
+            
+            // return <Navigate to="/store" />
 
             
-            // navigate("/store", { replace: true })
+            navigate("/store", { replace: true })
         }).catch(err => {
             alert(err.message);
         })
         
         
     }
+    console.log(authCtx.isLoggedIn);
 
 
 

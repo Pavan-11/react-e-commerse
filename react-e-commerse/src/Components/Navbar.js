@@ -1,17 +1,22 @@
 import React, { useContext } from 'react';
 import classes from './Navbar.module.css';
 import CartContext from './CartContext';
-import AuthContext from './AuthContext';
+import AuthContext from '../Context/AuthContext';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import { Link, Navigate } from 'react-router-dom';
 
 
 const NavigationBar = (props) => {
 
+    // const [isLogged, setIsLogged]= useState(false)?\
+
+    
+
     // const history = useNavigate();
 
     const authCtx = useContext(AuthContext);
 
+   
     const logoutHandler = () => {
         authCtx.logout()
         // history.replace('/auth')
