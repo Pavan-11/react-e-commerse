@@ -1,12 +1,12 @@
 import React from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import classes from './ProductsDetail.module.css';
 import { Container, Button } from 'react-bootstrap';
 
 
 export const ProductDetail = () => {
 
-    const params = useParams();
+    // const params = useParams();
     const location = useLocation();
     const item = location.state;
     console.log(location);

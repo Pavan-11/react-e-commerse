@@ -69,6 +69,7 @@ const Items = () => {
 
     const handleToCart = (item) => {
         addToCart(item);
+
     }
 
 
@@ -86,7 +87,7 @@ const Items = () => {
                                 <NavLink to={`/products/${item}`} state={item}><Card.Img className={classes.img} variant="top" src={item.imageUrl} /></NavLink>
                             </div>
                             <Card.Footer className='d-flex justify-content-around align-items-center'>Price: ${item.price}
-                                <Button onClick={() => handleToCart(item)} >Add to Cart</Button>
+                                <Button onClick={() => {handleToCart(item)}} >Add to Cart</Button>
                             </Card.Footer>
                         </div>
                     ))}

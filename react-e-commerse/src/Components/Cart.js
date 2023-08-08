@@ -1,12 +1,50 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import CartContext from './CartContext';
 import Modal from './Modal';
 import {  Table } from 'react-bootstrap';
 import './Cart.css';
+import axios from 'axios';
 
 const Cart = (props) => {
 
-    const {cartItems, removeFromCart, calculatedTotalAmount} = useContext(CartContext);
+    const [cartItems, setCartItems] = useState([]);
+
+    const userEmail = localStorage.getItem('email').replace('@', '').replace('.', "");
+
+    const {remove,removeFromCart, calculatedTotalAmount} = useContext(CartContext);
+
+    useEffect(()=>{
+       const fetchCartProducts = async() => {
+        try{
+            const res = await axios.get(`https://crudcrud.com/api/8cda44ab23174116b936900e6ba39a91/${userEmail}`)
+            console.log("this is on cart Click",res);
+            setCartItems(res.data)
+            
+        }catch(err){
+            console.log(err);
+        }
+       }
+       fetchCartProducts();
+    },[])
+
+
+    useEffect(() => {
+        const fetchCartProducts = async () => {
+            try {
+                const res = await axios.get(`https://crudcrud.com/api/8cda44ab23174116b936900e6ba39a91/${userEmail}`)
+                // console.log("this is on cart Click", res);
+                setCartItems(res.data)
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        fetchCartProducts();
+    }, [remove])
+
+    
+
+
 
     return (
         <Modal onClose={props.onClose}>
@@ -22,12 +60,13 @@ const Cart = (props) => {
                     </thead>
                     <tbody>
                             {cartItems.map((item)=>(
-                            <tr key={item.id}> 
+                                <tr key={item.id}> 
+                                {console.log(item)}
                                 <td><img className='pictures' src={item.imageUrl} alt='product' />{item.title}</td>
                                 <td>${item.price}</td>
                                 <td style={{textAlign:'center'}} >{item.quantity}
                                 </td>
-                                    <td><button onClick={() => removeFromCart(item.id)}>remove</button></td>
+                                    <td><button onClick={() => removeFromCart(item._id)}>remove</button></td>
                             </tr>
                             ))}
                     </tbody>

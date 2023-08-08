@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from 'react';
-import {Navigate,useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import AuthContext from '../Context/AuthContext';
 
@@ -26,6 +26,7 @@ const AuthForm = () => {
         const enteredPassword = passwordInputRef.current.value;
 
 
+
         setIsLoading(true);
 
         let url;
@@ -49,20 +50,23 @@ const AuthForm = () => {
         }).then(res => {
             setIsLoading(false);
             if(res.ok){
+                
                 return res.json();
             }else{
                 return res.json().then(data => {
+                    localStorage.setItem('email', data.email);
                     let errorMessage = 'Authentication Failed';
+
                     throw new Error(errorMessage);
                 });
             }
         }).then(data => {
-            authCtx.login(data.idToken);
+            authCtx.login(data.idToken, data.email);
             console.log(data)
-            
-            // return <Navigate to="/store" />
 
+            // console.log(data)
             
+            // return <Navigate to="/store" />            
             navigate("/store", { replace: true })
         }).catch(err => {
             alert(err.message);
@@ -70,7 +74,7 @@ const AuthForm = () => {
         
         
     }
-    console.log(authCtx.isLoggedIn);
+    // console.log(authCtx.isLoggedIn);
 
 
 
